@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<!--DYLAN 2001585530-->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script type="text/javascript" src="jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<script type="text/javascript" src="bootstrap.min.js">
+	</script>
+	<script type="text/javascript">
+		function validate(){
+			var err="";
+			if(document.getElementById("email").value==""){
+				//alert("Please fill in the e-mail");
+				//document.getElementById("err_msg").innerHTML="Please fill in email."
+				err += "Please fill in email";
+				document.getElementById("email").focus();
+			
+			}
+			if(document.getElementById("name").value==""){
+				//alert("Please fill in name");
+				//document.getElementById("err_msg").innerHTML="Please fill in name."
+				err += "<br/>Please fill in name";
+				document.getElementById("name").focus();
+			}	
+			if(document.getElementById("type").value=="-1"){
+				err+= "<br/>Please choose the room type.";
+			}
+			if(document.getElementById("phone").value==""){
+				err+= "<br/>Please enter your phone number.";
+			}
+			if(document.getElementById("date").value==""){
+				err+= "<br/>Please enter stay in date.";
+			}
+
+			if(document.getElementById("day").value==""	){
+				err+= "<br/>Please enter length of stay.";
+			}
+
+			if(err==""){
+				save();
+			}
+			/*else{
+				err="";
+			}*/
+			document.getElementById("err_msg").innerHTML=err;
+}
+
+function save(){
+	var final = document.getElementById("email").value +"\n"+ document.getElementById("name").value+"\n" + document.getElementById("phone").value+"\n"+ document.getElementById("date").value+"\n" +document.getElementById("day").value+ " days"+"\n"+document.getElementById("type").value;
+
+		alert(final);
+}
+	/*	$(document).ready(function(){
+			$("#btnsubmit").click(function(){
+				if($("#email").val() == ""){
+					err+="Please fill in email";	
+				}
+
+				$("#err_msg").html(err);
+				if($("#phone").val == ""){
+					err+="Please fill in phone number;"
+				}
+
+				if($("#date").val == ""){
+					err+="Please fill in date;"
+				}
+
+				if(err!=""){
+					$("#err_msg").show();
+					$("#err_msg").html(err);
+				}
+				else{
+					$("#err_msg").hide();
+				}
+
+				$("#err_msg").html(err);
+			});
+		});
+}
+*/
+	</script>
+
+</head>
+<body>
+	<div class="container">
+		<div class="row"> <!--bootstrap row contains 12 cells-->
+			<div class="col-sm-12" align="center">
+				<img src="logo1	.jpg"/>
+			</div>
+		</div>
+		<div class="row" style="background-color: lavender" align="center">
+			<div class="col-sm-4">Home</div>
+			<div class="col-sm-4">Facility</div>
+			<div class="col-sm-4">Book</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						Booking Room
+					</div>
+					<div class="panel-body">
+							<div class="alert alert-warning" id="err_msg">
+							</div>
+						<form>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" name="email" id="email" class="form-control"/>
+							</div>
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" name="name" id="name" class="form-control" onkeypress='return event.keyCode >= 65 && event.keyCode <= 90 || event.keyCode >= 95 && event.keyCode <= 122 || event.keyCode == 8 || event.keyCode == 32'>
+							</div>
+							<div class="form-group">
+								<label for="phone">Phone</label>
+								<input type="text" name="phone" id="phone" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+							</div>
+							<div class="form-group">
+								<label for="date">Stay-in Date</label>
+								<input type="date" name="date" id="date" class="form-control"/>
+							</div>
+							<div class="form-group">
+								<label for="day">Length Of Stay</label>
+								<input type="text" name="day" placeholder="Days" id="day" class="form-control"onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+							</div>
+							<div class="form-group">
+								<label for="roomtype">Room Type</label>
+								<select id="type" name="type" class="form-control">
+									<option value="1">Select One</option>
+									<option value="1">Twin</option>
+									<option value="2">Double</option>
+									<option value="3">Executive</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="facility">Additional Facility</label>
+								<div class="checkbox">
+									<label><input type="checkbox" id="extrabed" name="facility">Extra Bed</label>
+									<label><input type="checkbox" id="shuttle" name="facility">Airport shuttle</label>
+									<label><input type="checkbox" id="tour" name="facility">Ubud Tour</label>
+							</div>
+							<div class="form-group">
+								<input type="reset" value="Reset" class="btn btn-default">
+								<input type="submit" value="Submit" class="btn btn-primary" id="btnsubmit" onclick="validate()">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				&copy 2017 - Pramana Hotel
+		</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
